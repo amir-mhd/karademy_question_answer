@@ -38,6 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "question.apps.QuestionConfig",
+    "crispy_forms",
+    "ckeditor",
 ]
 
 MIDDLEWARE = [
