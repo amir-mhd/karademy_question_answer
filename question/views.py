@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView
 from .models import Question 
+from .forms import QuestionForm
 
 class HomeListView(ListView):
     model = Question

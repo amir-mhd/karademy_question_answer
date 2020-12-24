@@ -9,7 +9,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("about/", question_website_views.about ,name="about"),
     path("", include("question.urls")),
-    path("register/", users_views.register, name="register"),
-    path("ask_question/", question_views.AskQuestion.as_view(), name="ask_question"),
-    path("question_detail/<int:pk>", question_views.QuestionDetail.as_view(), name="question_detail"),
+    # path("register/", users_views.register, name="register"),
+    # path("ask_question/", question_views.AskQuestion.as_view(), name="ask_question"),
+    path("question_detail/<int:pk>", question_views.QuestionDetailView.as_view(), name="question_detail"),
 ]

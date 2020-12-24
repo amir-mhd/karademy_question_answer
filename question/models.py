@@ -36,7 +36,7 @@ class Question(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="پرسنده")
     title = models.CharField(max_length=255, verbose_name="عنوان پرسش")
     description = RichTextField(verbose_name="متن پرسش")
-    tag = models.ForeignKey(Tag, blank=True)
+    tag = models.ForeignKey(Tag, blank=True, on_delete=models.CASCADE)
     slug = models.SlugField(null=True, allow_unicode=True)
     created_date = models.DateTimeField(auto_now_add=True, verbose_name="تاریخ ایجاد")
     edited_date = models.DateTimeField(auto_now=True, verbose_name="تاریخ ویرایش")
@@ -44,10 +44,10 @@ class Question(models.Model):
     class Meta:
         verbose_name = 'سوال'
         verbose_name_plural = 'سوال ها'
-        ordering = ('-date_created',) 
+        ordering = ('-created_date',) 
         db_table = 'Question'
 
-    def __str__(self):s
+    def __str__(self):
         return self.title
 
     def save(self, *args, **kwargs):
@@ -61,8 +61,8 @@ class Answer(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='پاسخ دهنده')
     question = models.ForeignKey(Question, on_delete=models.CASCADE, verbose_name='سوال مرتبط', related_name='question_answers')
     description = RichTextField(verbose_name='متن جواب')
-    date_created = models.DateTimeField(auto_now_add=True, verbose_name='تاریخ ایجاد')
-    date_edited = models.DateTimeField(auto_now=True, verbose_name='تاریخ ویرایش') 
+    created_date = models.DateTimeField(auto_now_add=True, verbose_name="تاریخ ایجاد")
+    edited_date = models.DateTimeField(auto_now=True, verbose_name="تاریخ ویرایش")
 
     class Meta:
         verbose_name = "پاسخ"
