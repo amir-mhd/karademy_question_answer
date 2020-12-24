@@ -3,9 +3,10 @@ from django.views.generic import ListView, DetailView, CreateView
 from .models import Question 
 from .forms import QuestionForm
 
+
 class HomeListView(ListView):
     model = Question
-    template_name = "question/questions.html"
+    template_name = "question/question.html"
     
 
 class QuestionDetailView(DetailView):
