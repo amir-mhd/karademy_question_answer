@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.conf import settings
 from django.urls import path, include
 from . import views as question_website_views
 from users import views as users_views
@@ -13,3 +14,7 @@ urlpatterns = [
     path("ask_question/", question_views.QuestionCreateView.as_view(), name="ask_question"),
     # path("question_detail/<int:pk>", question_views.QuestionDetailView.as_view(), name="question_detail"),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
