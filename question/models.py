@@ -20,6 +20,7 @@ class Tag(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=100, verbose_name="دسته بندی", blank=True)
+    # parent = models.ForeignKey("self", verbose_name=("دسته بندی سطح بالا"), on_delete=models.SET_NULL)
     created_date = models.DateTimeField(auto_now_add=True, verbose_name="تاریخ ایجاد")
     edited_date = models.DateTimeField(auto_now=True, verbose_name="تاریخ ویرایش")
 
@@ -40,7 +41,8 @@ class Question(models.Model):
     slug = models.SlugField(null=True, allow_unicode=True)
     created_date = models.DateTimeField(auto_now_add=True, verbose_name="تاریخ ایجاد")
     edited_date = models.DateTimeField(auto_now=True, verbose_name="تاریخ ویرایش")
-    
+    view_count = models.IntegerField(default=0, verbose_name="تعداد بازدید")
+
     class Meta:
         verbose_name = 'سوال'
         verbose_name_plural = 'سوال ها'
@@ -59,7 +61,7 @@ class Question(models.Model):
 
 class Answer(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='پاسخ دهنده')
-    question = models.ForeignKey(Question, on_delete=models.CASCADE, verbose_name='سوال مرتبط', related_name='question_answers')
+    question = models.ForeignKey(Question, on_delete=models.CASCADE, verbose_name='سوال مرتبط')
     description = RichTextField(verbose_name='متن جواب')
     created_date = models.DateTimeField(auto_now_add=True, verbose_name="تاریخ ایجاد")
     edited_date = models.DateTimeField(auto_now=True, verbose_name="تاریخ ویرایش")
