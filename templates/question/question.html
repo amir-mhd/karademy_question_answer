@@ -9,8 +9,8 @@
     {% for question in questions%}
         <h2>{{ question.title }}</h2>
         <!-- adding (|safe) to properly show the cdkeditor genarated text -->
-        <h5>{{ question.description|safe}}</h5>
-        <h5> {{ question.tag }} </h5>
+        <p>{{ question.description|safe}}</p>
+        <p><b> {{ question.tag }} </b></p>
     {% endfor %}
 </body>
 </html>

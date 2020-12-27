@@ -8,7 +8,7 @@ class HomeListView(ListView):
     queryset = Question.objects.all()
     context_object_name = "questions"
     template_name = "question/question.html"
-    ordering = ["-created_date"]
+    # ordering = ["-created_date"]
 
 
 class QuestionDetailView(DetailView):
