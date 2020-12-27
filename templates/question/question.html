@@ -6,6 +6,11 @@
     <title>question</title>
 </head>
 <body>
-    <h1>this is the question page</h1>
+    {% for question in questions%}
+        <h2>{{ question.title }}</h2>
+        <!-- adding (|safe) to properly show the cdkeditor genarated text -->
+        <h5>{{ question.description|safe}}</h5>
+        <h5> {{ question.tag }} </h5>
+    {% endfor %}
 </body>
 </html>

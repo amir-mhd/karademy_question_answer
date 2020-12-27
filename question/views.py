@@ -5,9 +5,11 @@ from .forms import QuestionForm
 
 
 class HomeListView(ListView):
-    model = Question
+    queryset = Question.objects.all()
+    context_object_name = "questions"
     template_name = "question/question.html"
-    
+    ordering = ["-created_date"]
+
 
 class QuestionDetailView(DetailView):
     model = Question
