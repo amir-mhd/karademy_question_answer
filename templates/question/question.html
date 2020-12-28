@@ -1,14 +1,23 @@
+{% extends "base.html"%}
+{% block title %}
+    Home
+{% endblock %}
+
 {% block content %}
 
-    {% for question in questions%}
-        <ul>
-            <li>{{ question.title }}</li>
-            <!-- adding (|safe) to properly show the cdkeditor genarated text -->
-            <p>{{ question.description|safe}}</p>
-            <p><b> {{ question.tag }} </b></p>
-            <hr>
-        </ul>
-    {% endfor %}
+    <br>
+    <div class="container">
+        {% for question in questions%}
+            <ul>
+                <li>{{ question.title }}</li>
+                <!-- adding (|safe) to properly show the cdkeditor genarated text -->
+                <p>{{ question.description|truncatewords:10|safe}}</p>
+                <p><b> {{ question.tag }} </b></p>
+                <a href="{% url 'question_detail' question.pk %}" class="btn btn-outline-dark btn-sm" role="button">Detail</a>
+                <hr>
+            </ul>
+        {% endfor %}
+    </div>
 
 {% endblock %}
     

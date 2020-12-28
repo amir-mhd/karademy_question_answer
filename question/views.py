@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView
 from .models import Question 
 from .forms import QuestionForm
@@ -8,7 +8,6 @@ class HomeListView(ListView):
     queryset = Question.objects.all()
     context_object_name = "questions"
     template_name = "question/question.html"
-    # ordering = ["-created_date"]
 
 
 class QuestionDetailView(DetailView):

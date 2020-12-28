@@ -1,9 +1,20 @@
+{% extends "base.html"%}
+{% block title %}
+    {{ question.title }}
+{% endblock %}
+
+
 {% block content %}
 
-    <h2> {{ question.title }} </h2>
-    <hr>
-    <p> {{ question.description|safe }} </p>
-    <hr>
-    <p><b>{{ question.tag }}</b></p>
+    <br>
+    <div class="container">
+        <h2> {{ question.title }} </h2>
+        <hr>
+        <p> {{ question.description|safe }} </p>
+        <hr>
+        <p><b>{{ question.tag }}</b></p>
+        <br>
+        <a href="{% url 'questions' %}" class="btn btn-outline-dark btn-sm">Back</a>
+    </div>
 
 {% endblock %}
