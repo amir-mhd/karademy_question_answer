@@ -1,17 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>question</title>
-</head>
-<body>
+{% block content %}
+
     {% for question in questions%}
-        <h2>{{ question.title }}</h2>
-        <!-- adding (|safe) to properly show the cdkeditor genarated text -->
-        <p>{{ question.description|safe}}</p>
-        <p><b> {{ question.tag }} </b></p>
-        <hr>
+        <ul>
+            <li>{{ question.title }}</li>
+            <!-- adding (|safe) to properly show the cdkeditor genarated text -->
+            <p>{{ question.description|safe}}</p>
+            <p><b> {{ question.tag }} </b></p>
+            <hr>
+        </ul>
     {% endfor %}
-</body>
-</html>
+
+{% endblock %}
+    
