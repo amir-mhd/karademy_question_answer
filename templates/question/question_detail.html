@@ -17,6 +17,7 @@
     </div> -->
     <div class="card" style="background-color: #D9CAAD; width: 80rem; height: fit-content; margin: auto;">
         <ul>
+            <br>
             <li><h4><a style="text-decoration: none; color: #051934;" href="{% url 'question_detail' question.pk %}" class="link">{{ question.title }}</a></h4></li>
             <!-- adding (|safe) to properly show the cdkeditor genarated text -->
             <p style="color: #646A66;">{{ question.description|safe}}</p>
