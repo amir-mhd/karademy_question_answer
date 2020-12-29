@@ -19,7 +19,7 @@
         <ul>
             <li><h4><a style="text-decoration: none; color: #051934;" href="{% url 'question_detail' question.pk %}" class="link">{{ question.title }}</a></h4></li>
             <!-- adding (|safe) to properly show the cdkeditor genarated text -->
-            <p style="color: #646A66;">{{ question.description|truncatewords:10|safe}}</p>
+            <p style="color: #646A66;">{{ question.description|safe}}</p>
             {% for tag in question.tags.all %}
                 <p style="color: #C03507;"><em>{{ tag }}</em></p>
             {% endfor %}
