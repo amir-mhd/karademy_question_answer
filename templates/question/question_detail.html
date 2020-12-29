@@ -7,14 +7,26 @@
 {% block content %}
 
     <br>
-    <div class="container">
+    <!-- <div class="container">
         <h2> {{ question.title }} </h2>
         <hr>
         <p> {{ question.description|safe }} </p>
         <hr>
         <p><b>{{ question.tag }}</b></p>
         <br>
-        <a href="{% url 'questions' %}" class="btn btn-outline-dark btn-sm">Back</a>
+    </div> -->
+    <div class="card" style="background-color: #D9CAAD; width: 80rem; height: fit-content; margin: auto;">
+        <ul>
+            <li><h4><a style="text-decoration: none; color: #051934;" href="{% url 'question_detail' question.pk %}" class="link">{{ question.title }}</a></h4></li>
+            <!-- adding (|safe) to properly show the cdkeditor genarated text -->
+            <p style="color: #646A66;">{{ question.description|truncatewords:10|safe}}</p>
+            {% for tag in question.tags.all %}
+                <p style="color: #C03507;"><em>{{ tag }}</em></p>
+            {% endfor %}
+            <a href="{% url 'questions' %}" class="btn btn-outline-dark btn-sm">Back</a>
+
+        </ul>
     </div>
+
 
 {% endblock %}

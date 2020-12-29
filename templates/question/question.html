@@ -8,16 +8,19 @@
     <br>
     <div class="container">
         {% for question in questions%}
-            <ul>
-                <li>{{ question.title }}</li>
-                <!-- adding (|safe) to properly show the cdkeditor genarated text -->
-                <p>{{ question.description|truncatewords:10|safe}}</p>
-                {% for tag in question.tags.all %}
-                    <p><em>{{ tag }}</em></p>
-                {% endfor %}
-                <a href="{% url 'question_detail' question.pk %}" class="btn btn-outline-dark btn-sm" role="button">Detail</a>
-                <hr>
-            </ul>
+            <div class="card" style="background-color: #E9EAEE; width: 55rem; border-radius: 25px; height: fit-content; margin: auto;">
+                <ul>
+                    <br>
+                    <li><h4><a style="text-decoration: none; color: #051934;" href="{% url 'question_detail' question.pk %}" class="link">{{ question.title }}</a></h4></li>
+                    <!-- adding (|safe) to properly show the cdkeditor genarated text -->
+                    <p style="color: #646A66;">{{ question.description|truncatewords:10|safe}}</p>
+                    {% for tag in question.tags.all %}
+                        <p style="color: #970574;"><em>{{ tag }}</em></p>
+                    {% endfor %}
+                    <!-- <a href="{% url 'question_detail' question.pk %}" class="btn btn-outline-dark btn-sm" role="button">Detail</a> -->
+                </ul>
+            </div>
+            <br>
         {% endfor %}
     </div>
 
