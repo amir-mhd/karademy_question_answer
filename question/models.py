@@ -37,7 +37,7 @@ class Question(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="پرسنده")
     title = models.CharField(max_length=255, verbose_name="عنوان پرسش")
     description = RichTextField(verbose_name="متن پرسش")
-    tag = models.ForeignKey(Tag, blank=True, on_delete=models.CASCADE)
+    tags = models.ManyToManyField(Tag, blank=True)
     slug = models.SlugField(null=True, allow_unicode=True, blank=True, unique=True)
     created_date = models.DateTimeField(auto_now_add=True, verbose_name="تاریخ ایجاد")
     edited_date = models.DateTimeField(auto_now=True, verbose_name="تاریخ ویرایش")
