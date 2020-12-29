@@ -13,7 +13,7 @@ class HomeListView(ListView):
 class QuestionDetailView(DetailView):
     model = Question
     template_name = 'question/question_detail.html'
-
+    
 
 class QuestionCreateView(CreateView):
     model = Question
