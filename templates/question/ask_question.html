@@ -6,16 +6,18 @@
 
 {% block content %}
 
-    <br>
-    <div class="container">
-        <legend>Ask Question</legend>
+    <div class="content-section" style="margin: auto; width: 50rem;">
         <br>
         <form method="POST">
             {% csrf_token %}
-            {{ form|crispy }}
-            {{ form.media }}
-            <button type="submit">Submit</button>
+            <fieldset class="form-group" style=" direction: rtl;">
+                <legend style="color: blue; font-weight: bold;">
+                {{ form|crispy }}
+                {{ form.media }}
+            </fieldset>
+            <button type="submit" class="btn btn-outline-dark mt-1">Submit</button>
         </form>
+        <br>
     </div>
 
 {% endblock %}
