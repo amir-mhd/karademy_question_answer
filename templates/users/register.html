@@ -6,7 +6,7 @@
         <form method="POST">
             {% csrf_token %}
             <fieldset class="form-group">
-                <legend style="color: blue; font-weight: bold;">Join Now</legend>
+                <legend style="color: #a6a9b6; font-weight: bold;">Join Now</legend>
                 {{ form|crispy }}
             </fieldset>
             <div class="form-group">
@@ -15,7 +15,7 @@
         </form>
         <div class="border-top pt-3">
             <small class="text-muted">
-                Already Have An Account? <a style="text-decoration: none;" href="#">Sign In</a>
+                Already Have An Account? <a style="text-decoration: none;" href="{% url 'login' %}">Log In</a>
             </small>
         </div>
     </div>

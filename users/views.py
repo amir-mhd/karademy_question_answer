@@ -7,4 +7,4 @@ from django.contrib import messages
 class UserRegisterView(CreateView):
     form_class = UserRegisterForm
     template_name = "users/register.html"
-    success_url = reverse_lazy("questions") # should become login page when it created
+    success_url = reverse_lazy("login")
