@@ -57,6 +57,14 @@
               </div>
             </div>
           </nav>
+<!--  Trying to pull up the message alert
+        {% if messages %}
+          {% for message in messages %}
+          <div class="alert alert-{{ message.tags }}">
+            {{ message }}
+          </div>
+          {% endfor %}
+        {% endif %} -->
 
         {% block content %}
         {% endblock %}
