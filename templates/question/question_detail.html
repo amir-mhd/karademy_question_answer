@@ -26,7 +26,8 @@
             {% endfor %}
             <a href="{% url 'questions' %}" class="btn btn-outline-dark btn-sm">Back</a>
         </ul>
-        <p style="width: fit-content; margin-left: 32px; padding: 3px;" class="badge bg-secondary">{{ question.author }}</p>
+        <a style="text-decoration: none;width: fit-content; margin-left: 30px; padding: 3px" class="btn btn-outline-dark btn-sm" href="{% url 'update_question' question.pk %}">Update</a>
+        <p style="width: fit-content; margin: 10px 30px; padding: 3px;" class="badge bg-secondary">{{ question.author }}</p>
     </div>
 
 
