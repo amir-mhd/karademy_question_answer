@@ -2,12 +2,12 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
 from ckeditor.fields import RichTextField
-
+from django.urls import reverse_lazy
 
 class Tag(models.Model):
     name = models.CharField(max_length=50, verbose_name="اسم برچسب")
     created_date = models.DateTimeField(auto_now_add=True, verbose_name="تاریخ ایجاد")
-    edited_date = models.DateTimeField(auto_now=True, verbose_name="تاریخ ویرایش")
+    # edited_date = models.DateTimeField(auto_now=True, verbose_name="تاریخ ویرایش")
 
     class Meta:
         verbose_name = "برچسب"
@@ -57,6 +57,8 @@ class Question(models.Model):
             self.slug = slugify(self.title)
         super().save(*args, **kwargs)
 
+    def get_absolute_url(self):
+        return reverse_lazy('question_detail', args=[str(self.id)])
 
 
 class Answer(models.Model):
