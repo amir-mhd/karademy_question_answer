@@ -28,7 +28,7 @@
 
       <title>
           {% block title %}
-            Asqar
+            Karademy
           {% endblock %}
       </title>
       
@@ -36,26 +36,26 @@
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #2E343A;">
             <div class="container-fluid">
-              <a class="navbar-brand" href="{% url 'questions' %}">اصغر</a>
+              <a class="navbar-brand" href="{% url 'questions' %}">کارادمی</a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                   <li class="nav-item">
-                    <a class="nav-link active btn btn-secondary btn-sm" role="button" aria-current="page" href="{% url 'ask_question' %}">Ask Question</a>
+                    <a class="nav-link active btn btn-secondary btn-sm" role="button" aria-current="page" href="{% url 'ask_question' %}">پرسش سوال</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="{% url 'about' %}">About</a>
+                    <a class="nav-link" href="{% url 'about' %}">درباره ما</a>
                   </li>
                 </ul>
               </div>
               <div class="collapse navbar-collapse" dir="rtl">
                 {% if user.is_authenticated %}
-                <a class="nav-link" style="color: #fff; font-weight: bolder" href="{% url 'logout' %}">Log Out</a>
+                <a class="nav-link" style="color: #fff; font-weight: bolder" href="{% url 'logout' %}">خروج</a>
                 {% else %}
-                <a class="nav-link" style="color: #fff; font-weight: bolder" href="{% url 'login' %}">Log In</a>
-                <a class="nav-link" style="color: #fff; font-weight: bolder;" href="{% url 'register' %}">Register</a>
+                <a class="nav-link" style="color: #fff; font-weight: bolder" href="{% url 'login' %}">ورود</a>
+                <a class="nav-link" style="color: #fff; font-weight: bolder;" href="{% url 'register' %}">ثبت نام</a>
                 {% endif %}  
               </div>
             </div>
