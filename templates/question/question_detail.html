@@ -25,8 +25,8 @@
                 <p style="color: #C03507;"><em>{{ tag }}</em></p>
             {% endfor %}
             <a href="{% url 'questions' %}" class="btn btn-outline-dark btn-sm">Back</a>
-
         </ul>
+        <p style="width: 3rem; margin-left: 32px;" class="badge bg-secondary">{{ question.user }}</p>
     </div>
 
 
