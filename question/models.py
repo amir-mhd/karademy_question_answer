@@ -34,7 +34,7 @@ class Category(models.Model):
 
 
 class Question(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="پرسنده")
+    author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="پرسنده")
     title = models.CharField(max_length=255, verbose_name="عنوان پرسش")
     description = RichTextField(verbose_name="متن پرسش")
     tags = models.ManyToManyField(Tag, blank=True)
