@@ -57,7 +57,7 @@ class Question(models.Model):
         return self.title
 
     def save(self, *args, **kwargs):
-        super(Post, self).save(*args, **kwargs)        
+        super(Question, self).save(*args, **kwargs)        
         if not self.slug:
             super().save(*args, **kwargs)
         self.slug = slugify(self.title)
