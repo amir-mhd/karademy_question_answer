@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from .models import Question 
 from .forms import QuestionForm
@@ -14,10 +15,12 @@ class QuestionDetailView(DetailView):
     template_name = 'question/question_detail.html'
     
 
-class QuestionCreateView(CreateView):
+class QuestionCreateView(LoginRequiredMixin, CreateView):
     model = Question
     form_class = QuestionForm
     template_name = 'question/ask_question.html'
+    login_url = '/users/login/'
+    redirect_field_name = 'redirect_to'
 
     def form_valid(self, form):
         form.instance.author = self.request.user
