@@ -1,5 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Question 
 from .forms import QuestionForm
 
@@ -27,7 +27,7 @@ class QuestionCreateView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-class UpdateQuestionView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+class QuestionUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Question
     fields = ['title', 'description', 'tags']
     # create and update view can use the same template
@@ -36,6 +36,17 @@ class UpdateQuestionView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
+
+    def test_func(self):
+        question = self.get_object()
+        if self.request.user == question.author:
+            return True
+        return False
+
+
+
+class QuestionDeletView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Question
 
     def test_func(self):
         question = self.get_object()
