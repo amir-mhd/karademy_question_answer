@@ -47,6 +47,8 @@ class QuestionUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 class QuestionDeletView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Question
+    template_name = "question/question_confirm_delete.html"
+    success_url = "/"
 
     def test_func(self):
         question = self.get_object()

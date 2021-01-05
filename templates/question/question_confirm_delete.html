@@ -1,0 +1,23 @@
+{% extends "base.html"%}
+{% block title %}
+    Delete Question
+{% endblock %}
+
+{% block content %}
+
+    <div class="content-section" style="margin: auto; width: fit-content;">
+        <br>
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group" style=" direction: rtl;">
+                <legend style="color: blue; font-weight: bold;">حذف سوال</legend>
+                <h2>آیا از حذف پست مطمين اید؟</h2>
+                <h5>{{ Question.title }}</h5>
+            </fieldset>
+            <button type="submit" class="btn btn-outline-danger mt-1">حذف</button>
+            <a class="btn btn-outline-secondary mt-1" href="{% url 'question_detail' question.pk %}">برگشت به سوال</a>
+        </form>
+        <br>
+    </div>
+
+{% endblock %}
