@@ -30,5 +30,6 @@ class QuestionCreateView(LoginRequiredMixin, CreateView):
 class UpdateQuestionView(UpdateView):
     model = Question
     fields = ['title', 'description', 'tags']
-    template_name = "question/update_question.html"
+    # create and update view can use the same template
+    template_name = "question/ask_question.html"
  
