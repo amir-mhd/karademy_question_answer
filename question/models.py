@@ -1,3 +1,5 @@
+from hitcount.models import HitCountMixin, HitCount
+from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models
 from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
@@ -41,7 +43,9 @@ class Question(models.Model):
     slug = models.SlugField(null=True, allow_unicode=True, blank=True, unique=True)
     created_date = models.DateTimeField(auto_now_add=True, verbose_name="تاریخ ایجاد")
     edited_date = models.DateTimeField(auto_now=True, verbose_name="تاریخ ویرایش")
-    view_count = models.IntegerField(default=0, verbose_name="تعداد بازدید")
+    hit_count_generic = GenericRelation(HitCount, object_id_field='object_p', related_query_name='hit_count_generic_relation')
+    # view_count = models.IntegerField(default=0, verbose_name="تعداد بازدید")
+
 
     class Meta:
         verbose_name = 'سوال'
@@ -53,9 +57,10 @@ class Question(models.Model):
         return self.title
 
     def save(self, *args, **kwargs):
+        super(Post, self).save(*args, **kwargs)        
         if not self.slug:
-            self.slug = slugify(self.title)
-        super().save(*args, **kwargs)
+            super().save(*args, **kwargs)
+        self.slug = slugify(self.title)
 
     def get_absolute_url(self):
         return reverse_lazy('question_detail', args=[str(self.id)])
