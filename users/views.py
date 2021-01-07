@@ -1,5 +1,5 @@
 from .forms import UserRegisterForm
-from django.views.generic import CreateView
+from django.views.generic import CreateView, TemplateView
 from django.urls import reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.models import User
@@ -17,3 +17,7 @@ class UserRegisterView(SuccessMessageMixin, CreateView):
     #     return f"{username} was created successfully"
     # def get_success_message(self, cleaned_data):
     #     return self.f"{username} was created sucessfully" % dict(cleaned_data, username=self.object.username,)
+
+
+class UserProfileView(TemplateView):
+    template_name = "users/profile.html"
