@@ -8,15 +8,33 @@
 <style>
     
     div.content-section{
-        width: 40rem;
-        margin: auto;
-        /* background-color: yellow; */
+        background: #ffffff;
+        padding: 10px 20px;
+        border: 1px solid #dddddd;
+        border-radius: 3px;
+        margin-bottom: 20px;
+    }   
+
+    div.account-img {
+        height: 125px;
+        width: 125px;
+        margin-right: 20px;
+        margin-bottom: 16px;
+    }
+
+    img.account-img{
+        width: 5rem;
+        height: 5rem;
+    }
+
+    h2.account-heading {
+        font-size: 2.5rem;
     }
 
 
 </style>
 
-
+    <br>
     <div class="content-section">
         <div class="media">
         <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
@@ -25,7 +43,6 @@
             <p class="text-secondary">{{ user.email }}</p>
         </div>
         </div>
-        <!-- FORM HERE -->
     </div>
   
 {% endblock %}
