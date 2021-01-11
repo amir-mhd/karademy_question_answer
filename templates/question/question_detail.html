@@ -7,34 +7,54 @@
 
 {% block content %}
 
+    <style>
+        div.card{
+            direction: rtl;
+            background-color: #D9CAAD; 
+            width: 80rem; 
+            height: fit-content; 
+            margin: auto;
+        }
+
+        div.content-section{
+            width: fit-content; 
+            margin: 20px;
+        }
+
+        p {
+            margin: 5px 0;
+        }
+
+        h6 {
+            color: red;
+        }
+
+        p.tags {
+            color: #C03507; 
+            margin: 5px 10px; 
+            display: inline;
+        }
+    </style>
+
+
     <br>
-    <!-- <div class="container">
-        <h2> {{ question.title }} </h2>
-        <hr>
-        <p> {{ question.description|safe }} </p>
-        <hr>
-        <p><b>{{ question.tag }}</b></p>
-        <br>
-    </div> -->
-    <div class="card" style="background-color: #D9CAAD; width: 80rem; height: fit-content; margin: auto;">
-        <div style=" width: fit-content; margin: 20px;">
-            <h4 style="margin: 0;">{{ question.title }}</h4>
+    <div class="card">
+        <div class="content-section">
+            <h4> {{ question.title }} </h4>
             <!-- adding (|safe) to properly show the cdkeditor genarated text -->
-            <p style="color: #646A66; margin: 0;">{{ question.description|safe}}</p>
+            <p class="content" >{{ question.description|safe}}</p>
             <div>
                 {% for tag in question.tags.all %}
-                    <p style="color: #C03507; margin: 5px 10px; display: inline;"><em>{{ tag }}</em></p>
-                {% endfor %}
             </div>
+                    <h6><em>{{ tag }}</em></h6>
+                {% endfor %}
             {% if question.author == user %}
                 <a style="text-decoration: none;width: fit-content; margin-left: 30px; padding: 3px" class="btn btn-outline-dark btn-sm" href="{% url 'update_question' question.pk %}">بروزرسانی</a>
                 <a style="text-decoration: none;width: fit-content; margin-left: 30px; padding: 3px" class="btn btn-outline-danger btn-sm" href="{% url 'delete_question' question.pk %}">حذف</a>
             {% endif %}
-            <div style="direction: rtl; width: fit-content;">
-                <a style="direction: rtl; width: fit-content;" href="{% url 'questions' %}" class="btn btn-outline-dark btn-sm">برگشت</a>
-                <p style="width: fit-content; margin: 10px 30px; padding: 3px; direction: rtl;" class="badge bg-secondary">{{ question.author }}</p>
-                <p style="direction: rtl; margin: 0 10px;">تعداد بازدید:{% get_hit_count for question %}</p>
-            </div>
+            <a href="{% url 'questions' %}" class="btn btn-outline-dark btn-sm">برگشت</a>
+            <p class="badge bg-secondary">{{ question.author }}</p>
+            <p class="badge bg-secondary">تعداد بازدید:{% get_hit_count for question %}</p>
         </div>
     </div>
 
