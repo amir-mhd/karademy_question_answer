@@ -6,16 +6,16 @@
         <form method="POST">
             {% csrf_token %}
             <fieldset class="form-group">
-                <legend style="color: #a6a9b6; font-weight: bold;">Join Now</legend>
+                <legend style="color: #a6a9b6; font-weight: bold;">ثبت نام کنید</legend>
                 {{ form|crispy }}
             </fieldset>
             <div class="form-group">
-                <button type="submit" class="btn btn-outline-dark mt-2">Signup</button>
+                <button type="submit" class="btn btn-outline-dark mt-2">ثبت نام</button>
             </div>
         </form>
         <div class="border-top pt-3">
             <small class="text-muted">
-                Already Have An Account? <a style="text-decoration: none;" href="{% url 'login' %}">Log In</a>
+                آیا از قبل ثبت نام کرده اید؟<a style="text-decoration: none;" href="{% url 'login' %}"> ورود</a>
             </small>
         </div>
     </div>
