@@ -3,7 +3,8 @@ from django.views.generic import CreateView, TemplateView, UpdateView
 from django.urls import reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.models import User
-
+from django.contrib.auth.views import PasswordChangeView
+from django.contrib.auth.forms import PasswordChangeForm
 
 
 class UserRegisterView(CreateView):
@@ -31,3 +32,9 @@ class UserEditView(UpdateView):
 
 class UserProfileView(TemplateView):
     template_name = "users/profile.html"
+
+
+class PasswordsChangeView(PasswordChangeView):
+    form_class = PasswordChangeForm
+    success_url = reverse_lazy("login")
+    template_name = "users/change_password.html"
