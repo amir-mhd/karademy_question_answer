@@ -1,7 +1,16 @@
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy, reverse
 from .models import Question 
 from .forms import QuestionForm
+from django.http import HttpResponseRedirect
+
+
+def LikeView(request, pk):
+    question = get_object_or_404(Question, id=request.POST.get("question_id"))
+    question.likes.add(request.user)
+    return HttpResponseRedirect(reverse("question_detail", args=[str(pk)]))
 
 
 class HomeListView(ListView):
@@ -13,7 +22,8 @@ class HomeListView(ListView):
 class QuestionDetailView(DetailView):
     model = Question
     template_name = 'question/question_detail.html'
-    
+    context_object_name = "question"
+
 
 class QuestionCreateView(LoginRequiredMixin, CreateView):
     model = Question
@@ -44,7 +54,6 @@ class QuestionUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return False
 
 
-
 class QuestionDeletView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Question
     template_name = "question/question_confirm_delete.html"
@@ -55,3 +64,4 @@ class QuestionDeletView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         if self.request.user == question.author:
             return True
         return False
+

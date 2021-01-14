@@ -44,8 +44,8 @@ class Question(models.Model):
     created_date = models.DateTimeField(auto_now_add=True, verbose_name="تاریخ ایجاد")
     edited_date = models.DateTimeField(auto_now=True, verbose_name="تاریخ ویرایش")
     hit_count_generic = GenericRelation(HitCount, object_id_field='object_p', related_query_name='hit_count_generic_relation')
-    # view_count = models.IntegerField(default=0, verbose_name="تعداد بازدید")
-
+    likes = models.ManyToManyField(User, related_name="question_like")
+    
 
     class Meta:
         verbose_name = 'سوال'
@@ -64,6 +64,10 @@ class Question(models.Model):
 
     def get_absolute_url(self):
         return reverse_lazy('question_detail', args=[str(self.id)])
+
+    def likes_count(self):
+        return self.likes.count()
+
 
 
 class Answer(models.Model):

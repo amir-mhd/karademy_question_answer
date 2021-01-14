@@ -56,6 +56,20 @@
             <p class="badge bg-secondary">{{ question.author }}</p>
             <p class="badge bg-secondary">تعداد بازدید:{% get_hit_count for question %}</p>
         </div>
+        <br>
+        <!--  like for question -->
+        <form method="POST" action="{% url 'question_like' question.pk %}">
+            {% csrf_token %}
+            {% if request.user.is_authenticated %}
+            {% if question_liked %}
+                <button class="btn btn-danger btn-sm" type="submit" name="question_id" value="{{ question.id }}">UnLike</button>
+            {% else %}
+                <button class="btn btn-success btn-sm" type="submit" name="question_id" value="{{ question.id }}">Like</button>
+            {% endif %}
+            {% endif %}
+        </form>
+        <!-- using the method | likes_count | in the question model without passign data by get_context_data -->
+        <p>likes {{ question.likes_count }}</p>
     </div>
 
 
