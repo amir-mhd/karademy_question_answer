@@ -9,7 +9,12 @@ from django.http import HttpResponseRedirect
 
 def LikeView(request, pk):
     question = get_object_or_404(Question, id=request.POST.get("question_id"))
-    question.likes.add(request.user)
+    liked = False
+    if question.likes.filter(id=request.user.id).exists():
+        question.likes.remove(request.user)
+    else:
+        question.likes.add(request.user)
+        liked = True
     return HttpResponseRedirect(reverse("question_detail", args=[str(pk)]))
 
 
@@ -23,6 +28,17 @@ class QuestionDetailView(DetailView):
     model = Question
     template_name = 'question/question_detail.html'
     context_object_name = "question"
+    
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(**kwargs)
+        question = get_object_or_404(Question, id=self.kwargs["pk"])
+
+        liked = False
+        if question.likes.filter(id=self.request.user.id).exists():
+            liked = True
+
+        context["liked"] = liked  
+        return context
 
 
 class QuestionCreateView(LoginRequiredMixin, CreateView):
