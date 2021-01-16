@@ -32,7 +32,7 @@ class UserEditView(UpdateView):
 
 class UserProfileView(TemplateView):
     template_name = "users/profile.html"
-
+    
 
 class PasswordsChangeView(PasswordChangeView):
     form_class = PasswordChangeForm

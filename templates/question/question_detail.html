@@ -53,7 +53,10 @@
                 <a style="text-decoration: none;width: fit-content; margin-left: 30px; padding: 3px" class="btn btn-outline-danger btn-sm" href="{% url 'delete_question' question.pk %}">حذف</a>
             {% endif %}
             <a href="{% url 'questions' %}" class="btn btn-outline-dark btn-sm">برگشت</a>
-            <p class="badge bg-secondary">{{ question.author }}</p>
+            <!-- <p class="badge bg-secondary">{{ question.author }}</p> -->
+
+            <p class="badge bg-secondary"><a href="{% url 'profile' question.author.pk %}">{{ question.author }}</a></p>
+
             <p class="badge bg-secondary">تعداد بازدید >> {% get_hit_count for question %}</p>
         </div>
         <br>

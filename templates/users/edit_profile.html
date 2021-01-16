@@ -10,6 +10,7 @@
         <form method="POST">
             {% csrf_token %}
             {{ form|crispy }}
+            <!-- <small id="hint_id_password">تغییر گذرواژه</small> -->
             <button type="submit" class="btn btn-outline-dark mt-2">ویرایش</button>
         </form>
     </div>
