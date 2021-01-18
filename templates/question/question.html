@@ -15,18 +15,24 @@
             direction: rtl;
         }
 
-    a {
-        text-decoration: none; 
-        color: #051934;
-    }
+        a {
+            text-decoration: none; 
+            color: #051934;
+        }
 
-    p {
-        color: #646A66;
-    }
+        p {
+            color: #646A66;
+        }
 
-    p.tag {
-        color: #970574;
-    }
+        p.tag {
+            color: #970574;
+            display: inline;
+        }
+
+        p#tag-label {
+            display: inline;
+            color: #000000;
+        }
 
     </style>
 
@@ -39,9 +45,12 @@
                     <li><h4><a href="{% url 'question_detail' question.pk %}" class="link">{{ question.title }}</a></h4></li>
                     <!-- adding (|safe) to properly show the cdkeditor genarated text -->
                     <p>{{ question.description|truncatewords:10|safe}}</p>
-                    {% for tag in question.tags.all %}
-                        <p class="tag"><em>{{ tag }}</em></p>
-                    {% endfor %}
+                    <div class="tags">
+                        <p id="tag-label">برچسب ها:</p>
+                        {% for tag in question.tags.all %}
+                            <p class="tag">{{ tag }}</p>
+                        {% endfor %}
+                    </div>
                     <!-- <a href="{% url 'question_detail' question.pk %}" class="btn btn-outline-dark btn-sm" role="button">Detail</a> -->
                 </ul>
             </div>
