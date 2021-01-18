@@ -43,7 +43,7 @@ class Question(models.Model):
     slug = models.SlugField(null=True, allow_unicode=True, blank=True, unique=True)
     created_date = models.DateTimeField(auto_now_add=True, verbose_name="تاریخ ایجاد")
     edited_date = models.DateTimeField(auto_now=True, verbose_name="تاریخ ویرایش")
-    hit_count_generic = GenericRelation(HitCount, object_id_field='object_p', related_query_name='hit_count_generic_relation')
+    hit_count_generic = GenericRelation(HitCount, object_id_field='object_pk', related_query_name='hit_count_generic_relation')
     likes = models.ManyToManyField(User, related_name="question_like")
     
 
@@ -67,7 +67,6 @@ class Question(models.Model):
 
     def likes_count(self):
         return self.likes.count()
-
 
 
 class Answer(models.Model):

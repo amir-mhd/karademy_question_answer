@@ -81,3 +81,10 @@ class QuestionDeletView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
             return True
         return False
 
+
+# class QuestionDeletView(DeleteView):
+#     def get_object(self, queryset=None):
+#         obj = super(QuestionDeletView, self).get_object()
+#         if self.request.user != question.author:
+#             raise Http404  # any error you need to display
+#         return obj
