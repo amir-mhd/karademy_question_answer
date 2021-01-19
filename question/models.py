@@ -22,7 +22,7 @@ class Tag(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=100, verbose_name="دسته بندی", blank=True)
-    # parent = models.ForeignKey("self", verbose_name=("دسته بندی سطح بالا"), on_delete=models.SET_NULL)
+    parent = models.ForeignKey("self", verbose_name=("دسته بندی سطح بالا"), on_delete=models.CASCADE, blank=True, null=True)
     created_date = models.DateTimeField(auto_now_add=True, verbose_name="تاریخ ایجاد")
     edited_date = models.DateTimeField(auto_now=True, verbose_name="تاریخ ویرایش")
 
@@ -30,6 +30,7 @@ class Category(models.Model):
         verbose_name = "دسته بندی"
         verbose_name_plural = "دسته بندیها"
         db_table = "Category"
+        ordering = ("created_date",)
 
     def __str__(self):
         return self.name
@@ -45,7 +46,7 @@ class Question(models.Model):
     edited_date = models.DateTimeField(auto_now=True, verbose_name="تاریخ ویرایش")
     hit_count_generic = GenericRelation(HitCount, object_id_field='object_pk', related_query_name='hit_count_generic_relation')
     likes = models.ManyToManyField(User, related_name="question_like")
-    
+    category = models.ForeignKey(Category, related_name="articles", on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = 'سوال'
