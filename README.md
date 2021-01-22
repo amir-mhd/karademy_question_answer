@@ -8,7 +8,7 @@ The main reason for building this platform is that we all know that being a deve
 There is no specefic code style BUT, I tried to be consistent on using CBV as much as I can and taking the simplest path to design the logic.
 
 # Technology
-Powerd by Django, web framework built on python.
+Powerd by **Django, web framework built on python**.
 You can find the list of every package in the project in the requirments.txt file.
 
 # Contribution Guide
