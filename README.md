@@ -9,7 +9,7 @@ There is no specefic code style BUT, I tried to be consistent on using CBV as mu
 
 # Technology
 Powerd by **Django, web framework built on python**.
-You can find the list of every package in the project in the requirments.txt file.
+You can find the list of every package used in the project in the requirments.txt file.
 
 # Contribution Guide
 For any contribution feel free to clone the repo and any PL is welcome (any help on the front side of the project would be welcome and appreciated).
