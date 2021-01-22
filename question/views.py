@@ -29,6 +29,7 @@ class QuestionDetailView(DetailView):
     template_name = 'question/question_detail.html'
     context_object_name = "question"
     
+    #check if question is liked or not, passing it to the template
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
         question = get_object_or_404(Question, id=self.kwargs["pk"])
@@ -59,10 +60,12 @@ class QuestionUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     # create and update view can use the same template
     template_name = "question/ask_question.html"
 
+    #check if request user is the author or not
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
+    #necessery for UserPassesTestMixin to check for permession
     def test_func(self):
         question = self.get_object()
         if self.request.user == question.author:
