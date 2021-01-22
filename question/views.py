@@ -5,6 +5,7 @@ from django.urls import reverse_lazy, reverse
 from .models import Question 
 from .forms import QuestionForm
 from django.http import HttpResponseRedirect
+from django.contrib.messages.views import SuccessMessageMixin
 
 
 def LikeView(request, pk):
@@ -42,23 +43,24 @@ class QuestionDetailView(DetailView):
         return context
 
 
-class QuestionCreateView(LoginRequiredMixin, CreateView):
+class QuestionCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = Question
     form_class = QuestionForm
     template_name = 'question/ask_question.html'
     login_url = '/users/login/'
-    redirect_field_name = 'redirect_to'
+    success_message = "created successfully"
 
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
 
-class QuestionUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+class QuestionUpdateView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, UpdateView):
     model = Question
     fields = ['title', 'description', 'tags']
     # create and update view can use the same template
     template_name = "question/ask_question.html"
+    success_message = "updated successfully"
 
     #check if request user is the author or not
     def form_valid(self, form):
@@ -73,10 +75,11 @@ class QuestionUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return False
 
 
-class QuestionDeletView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+class QuestionDeletView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, DeleteView):
     model = Question
     template_name = "question/question_confirm_delete.html"
     success_url = "/"
+    success_message = "deleted successfully"
 
     def test_func(self):
         question = self.get_object()
@@ -85,9 +88,3 @@ class QuestionDeletView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         return False
 
 
-# class QuestionDeletView(DeleteView):
-#     def get_object(self, queryset=None):
-#         obj = super(QuestionDeletView, self).get_object()
-#         if self.request.user != question.author:
-#             raise Http404  # any error you need to display
-#         return obj
