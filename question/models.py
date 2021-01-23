@@ -7,9 +7,9 @@ from ckeditor.fields import RichTextField
 from django.urls import reverse_lazy
 
 class Tag(models.Model):
-    name = models.CharField(max_length=50, verbose_name="اسم برچسب")
+    name = models.CharField(max_length=50, verbose_name="اسم برچسب", unique=True)
     created_date = models.DateTimeField(auto_now_add=True, verbose_name="تاریخ ایجاد")
-    # edited_date = models.DateTimeField(auto_now=True, verbose_name="تاریخ ویرایش")
+    edited_date = models.DateTimeField(auto_now=True, verbose_name="تاریخ ویرایش")
 
     class Meta:
         verbose_name = "برچسب"
@@ -40,7 +40,7 @@ class Question(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="پرسنده")
     title = models.CharField(max_length=255, verbose_name="عنوان پرسش")
     description = RichTextField(verbose_name="متن پرسش")
-    tags = models.ManyToManyField(Tag)
+    tags = models.ManyToManyField(Tag, blank=True, null=True)
     slug = models.SlugField(null=True, allow_unicode=True, blank=True, unique=True)
     created_date = models.DateTimeField(auto_now_add=True, verbose_name="تاریخ ایجاد")
     edited_date = models.DateTimeField(auto_now=True, verbose_name="تاریخ ویرایش")
