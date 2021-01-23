@@ -34,6 +34,16 @@
             margin: 5px 10px; 
             display: inline;
         }
+
+        div.category {
+            margin: 0px;
+            /* background-color: yellow; */
+        }
+
+        a{
+            text-decoration: none;
+        }
+
     </style>
 
 
@@ -58,8 +68,12 @@
             <p class="badge bg-secondary">{{ question.author }}</p>
 
             <p class="badge bg-secondary">تعداد بازدید >> {% get_hit_count for question %}</p>
+            {% if question.category %}
+                <div class="category">
+                    <p>دسته بندی: <a href="#" class="link">{{question.category}}</a></p>
+                </div>
+            {% endif %}
         </div>
-        <br>
         <!--  like for question -->
         <form method="POST" action="{% url 'question_like' question.pk %}">
             {% csrf_token %}
@@ -74,6 +88,5 @@
         <!-- using the method | likes_count | in the question model without passign data by get_context_data -->
         <p>likes {{ question.likes_count }}</p>
     </div>
-
 
 {% endblock %}

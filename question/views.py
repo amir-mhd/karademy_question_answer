@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy, reverse
-from .models import Question 
+from .models import Question, Category 
 from .forms import QuestionForm
 from django.http import HttpResponseRedirect
 from django.contrib.messages.views import SuccessMessageMixin
@@ -34,12 +34,12 @@ class QuestionDetailView(DetailView):
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
         question = get_object_or_404(Question, id=self.kwargs["pk"])
-
+        categories = Category.objects.all()
         liked = False
         if question.likes.filter(id=self.request.user.id).exists():
             liked = True
-
         context["liked"] = liked  
+        context["categories"] = categories
         return context
 
 
