@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from django.urls import reverse_lazy
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -10,9 +10,10 @@ class Profile(models.Model):
 
     class Meta:
         db_table = "Profile"
-        verbose_name_plural = "Profiles"
+        verbose_name = "پروفایل"
+        verbose_name_plural = "پروفایل ها"
 
     def __str__(self):
         return f"{self.user.username} Profile"
 
-    
+
