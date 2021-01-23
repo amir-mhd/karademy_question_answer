@@ -1,5 +1,11 @@
 from django.urls import path
-from .views import HomeListView, QuestionCreateView, QuestionDetailView, QuestionUpdateView, QuestionDeletView, LikeView
+from .views import ( HomeListView,
+    QuestionCreateView,
+    QuestionDetailView,
+    QuestionUpdateView,
+    QuestionDeletView,
+    LikeView,
+    CategoryListView)
 
 
 urlpatterns = [
@@ -9,4 +15,5 @@ urlpatterns = [
     path("question_detail/<int:pk>/update", QuestionUpdateView.as_view(), name="update_question"),
     path("question_detail/<int:pk>/delete", QuestionDeletView.as_view(), name="delete_question"),
     path("question_detail/<int:pk>/like", LikeView, name="question_like"),
+    path("category_list", CategoryListView.as_view(), name="category_list"),
 ]

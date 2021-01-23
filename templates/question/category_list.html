@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}
+    دسته بندی ها
+{% endblock title %}
+
+
+{% block content %}
+
+    <style>
+
+        .category {
+            margin: auto;
+            /* background-color: yellow; */
+            width: fit-content;
+        }
+
+
+        h5 {
+            margin: auto;
+        }
+
+        a {
+            text-decoration: none;
+            color: red;
+        }
+
+    </style>
+
+    <br>
+    <div class="category">
+        {% for category in categories %}
+            <h5><a href="#" class="link">{{ category.name }}</a></h5>
+        {% endfor %}
+    </div>
+{% endblock content %}

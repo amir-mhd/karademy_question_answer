@@ -88,3 +88,9 @@ class QuestionDeletView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageM
         return False
 
 
+class CategoryListView(ListView):
+    model = Category
+    template_name = "question/category_list.html"
+    context_object_name = "categories"
+
+
