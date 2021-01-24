@@ -17,5 +17,5 @@ urlpatterns = [
     path("question_detail/<int:pk>/delete/", QuestionDeletView.as_view(), name="delete_question"),
     path("question_detail/<int:pk>/like/", LikeView, name="question_like"),
     path("category_list/", CategoryListView.as_view(), name="category_list"),
-    path("category_articles_list/<int:category_id>/<str:category_slug>", CategoryArticlesList.as_view(), name="category_articles_list"),
+    path("category_articles_list/<int:id>/<category>", CategoryArticlesList.as_view(), name="category_articles_list"),
 ]
