@@ -70,7 +70,7 @@
             <p class="badge bg-secondary">تعداد بازدید >> {% get_hit_count for question %}</p>
             {% if question.category %}
                 <div class="category">
-                    <p>دسته بندی: <a href="#" class="link">{{question.category}}</a></p>
+                    <p>دسته بندی: {{question.category}}</p>
                 </div>
             {% endif %}
         </div>

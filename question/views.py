@@ -98,7 +98,11 @@ class CategoryArticlesList(ListView):
     template_name = "question/category_article_list.html"
     context_object_name = "category_list"
 
+    # using (get_quesryset) instead of using (model) to customize the query
     def get_queryset(self):
+        """
+        customize the queryset by using the (category) passed with the url
+        """
         content = {
             "category": self.kwargs['category'],
             "questions": Question.objects.filter(category__id=self.kwargs["id"]),

@@ -18,22 +18,26 @@
             color: #000;
         }
 
-        a:hover {
-            color: gray;
+        a.back-button:hover {
+            color: #fff;
         }
 
         div.card {
             margin: 5px 5px;
             border-style: solid;
             border-width: 2px;
-            border-color: blue;
+            border-color: #006d77;
+        }
+
+        legend {
+            font-weight: 800;
         }
 
     </style>
 
     <br>
     <div class="container">
-        {% if category_list.category %}
+        {% if category_list.category and not "None"%}
             <legend>نام دسته بندی</legend>
             <h4>{{ category_list.category }}</h4>
         {% else %}
@@ -43,7 +47,7 @@
         {% if category_list.questions %}
             {% for question in category_list.questions %}
                 <div class="card">
-                    <h5><a href="{% url 'question_detail' question.id %}" class="link">{{ question.title }}</a></h5>
+                    <h5><a href="{% url 'question_detail' question.id %}" class="link">{{ question.title|truncatechars:50 }}</a></h5>
                     <h6>نویسنده: {{ question.author }}</h6>
                     <p>تعداد لایک :{{ question.likes_count }}</p>
                 </div>
@@ -53,7 +57,7 @@
         {% endif %}
     </div>
     <div class="container">
-        <button type="button" class="btn btn-secondary"><a href="{% url 'category_list' %}">برگشت به لیست دسته بندی ها</a></button>
+        <button type="button" class="btn btn-secondary"><a href="{% url 'category_list' %}" class="back-button">برگشت به لیست دسته بندی ها</a></button>
     </div>
 {% endblock content %}
 

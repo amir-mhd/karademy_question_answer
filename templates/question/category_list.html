@@ -8,28 +8,39 @@
 
     <style>
 
-        .category {
-            margin: auto;
-            /* background-color: yellow; */
-            width: fit-content;
+        .container {
+            direction: rtl;
         }
 
-
-        h5 {
-            margin: auto;
+        div.question {
+            
+            width: fit-content;
+            /* background-color: blueviolet; */
         }
 
         a {
             text-decoration: none;
-            color: red;
+            color: #006d77;
+        }
+
+        a:hover {
+            color: #ef233c;
+        }
+
+        legend {
+            font-weight: 800;
         }
 
     </style>
 
     <br>
-    <div class="category">
+    <div class="container">
+        <legend>دسته بندی ها</legend>
+        <hr>
         {% for category in categories %}
-            <h5><a href="{% url 'category_articles_list' category.id category.slug %}" class="link">{{ category.name }}</a></h5>
+            <div class="question">
+                <h5><a href="{% url 'category_articles_list' category.id category.slug %}" class="link">{{ category.name }}</a></h5>
+            </div>
         {% endfor %}
     </div>
 {% endblock content %}
