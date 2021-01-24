@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, TemplateView
 from django.urls import reverse_lazy, reverse
 from .models import Question, Category 
 from .forms import QuestionForm
@@ -94,3 +94,14 @@ class CategoryListView(ListView):
     context_object_name = "categories"
 
 
+class CategoryArticlesList(ListView):
+    template_name = "question/category_article_list.html"
+    model = Category
+    # categoriess = Category.objects.all()
+    # context_object_name = categoriess    
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(**kwargs)   
+        categories = Category.objects.last()
+        context["categories"] = categories
+        return context

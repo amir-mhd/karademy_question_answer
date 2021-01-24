@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}
+    {{ articles }}
+{% endblock title %}
+
+{% block content%}
+
+    <style>
+
+        div.container {
+            width: fit-content;
+            margin: auto;
+        }
+
+        h6 {
+            color: red ;
+        }
+
+    </style>
+
+    <br>
+    <div class="container">
+        <!-- <h5>hello world</h5> -->
+        <h4>category name: {{ categories.name }}</h4>
+        <h4>category id :{{ categories.id }}</h4>
+        <h5>parent id: {{ categories.parent_id }}</h5>
+        <h6>slug: {{ categories.slug }}</h6>
+    </div>
+
+{% endblock content%}

@@ -29,7 +29,7 @@
     <br>
     <div class="category">
         {% for category in categories %}
-            <h5><a href="#" class="link">{{ category.name }}</a></h5>
+            <h5><a href="{% url 'category_articles_list' category.id category.slug %}" class="link">{{ category.name }}</a></h5>
         {% endfor %}
     </div>
 {% endblock content %}
