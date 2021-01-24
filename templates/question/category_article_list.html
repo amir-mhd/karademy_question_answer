@@ -16,15 +16,21 @@
             color: red ;
         }
 
+        a {
+            text-decoration: none;
+            color: #fff;
+        }
+
     </style>
 
     <br>
     <div class="container">
-        <!-- <h5>hello world</h5> -->
         <h4>category name: {{ categories.name }}</h4>
         <h4>category id :{{ categories.id }}</h4>
         <h5>parent id: {{ categories.parent_id }}</h5>
         <h6>slug: {{ categories.slug }}</h6>
     </div>
-
+    <div class="container">
+        <button type="button" class="btn btn-secondary"><a href="{% url 'category_list' %}" class="link">برگشت</a></button>
+    </div>
 {% endblock content%}
