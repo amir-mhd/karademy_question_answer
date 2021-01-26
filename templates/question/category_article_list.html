@@ -37,12 +37,12 @@
 
     <br>
     <div class="container">
-        {% if category_list.category and not "None"%}
+        <!-- {% if category_list.category and not "None"%}
             <legend>نام دسته بندی</legend>
             <h4>{{ category_list.category }}</h4>
         {% else %}
             <p>نمیتوان دسته بندی را نشان داد</p>
-        {% endif %}
+        {% endif %} -->
         <hr>
         {% if category_list.questions %}
             {% for question in category_list.questions %}
@@ -55,6 +55,7 @@
         {% else %}
             <p>سوالی مربوط به این دسته بندی یافت نشد</p>
         {% endif %}
+        <hr>
     </div>
     <div class="container">
         <button type="button" class="btn btn-secondary"><a href="{% url 'category_list' %}" class="back-button">برگشت به لیست دسته بندی ها</a></button>

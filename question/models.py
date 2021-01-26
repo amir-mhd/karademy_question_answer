@@ -52,7 +52,7 @@ class Question(models.Model):
     edited_date = models.DateTimeField(auto_now=True, verbose_name="تاریخ ویرایش")
     hit_count_generic = GenericRelation(HitCount, object_id_field='object_pk', related_query_name='hit_count_generic_relation')
     likes = models.ManyToManyField(User, related_name="question_like", blank=True)
-    category = models.ForeignKey(Category, related_name="articles", on_delete=models.PROTECT, null=True, blank=True, default=10)
+    category = models.ForeignKey(Category, related_name="articles", on_delete=models.PROTECT, null=True, blank=True)
 
     class Meta:
         verbose_name = 'سوال'
