@@ -63,12 +63,6 @@ class Question(models.Model):
     def __str__(self):
         return self.title
 
-    def save(self, *args, **kwargs):
-        super(Question, self).save(*args, **kwargs)        
-        if not self.slug:
-            super().save(*args, **kwargs)
-        self.slug = slugify(self.title)
-
     def get_absolute_url(self):
         return reverse_lazy('question_detail', args=[str(self.id)])
 
