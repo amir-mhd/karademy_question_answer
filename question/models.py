@@ -1,10 +1,12 @@
 from hitcount.models import HitCountMixin, HitCount
-from django.contrib.contenttypes.fields import GenericRelation
+#used in hitcount
+from django.contrib.contenttypes.fields import GenericRelation 
 from django.db import models
 from django.contrib.auth.models import User
-from django.template.defaultfilters import slugify
-from ckeditor.fields import RichTextField
+#used for ckeditor
+from ckeditor.fields import RichTextField 
 from django.urls import reverse_lazy
+
 
 class Tag(models.Model):
     name = models.CharField(max_length=50, verbose_name="اسم برچسب", unique=True)
@@ -35,12 +37,6 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
-
-    def save(self, *args, **kwargs):
-        super(Category, self).save(*args, **kwargs)        
-        if not self.slug:
-            super().save(*args, **kwargs)
-        self.slug = slugify(self.name)
 
 class Question(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="پرسنده")

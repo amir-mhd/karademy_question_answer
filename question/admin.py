@@ -7,7 +7,8 @@ class QuestionAdmin(admin.ModelAdmin):
     list_filter = ("author", "category")
     prepopulated_fields = {"slug": ("title",)}
     search_fields = ("title", "description")
-    # raw_id_fields = ("author",)
+    #change the author field, make it easier to look up betwen users
+    raw_id_fields = ("author",)
     ordering = ("created_date", "edited_date")
 
 
