@@ -4,12 +4,30 @@
 {% endblock %}
 
 {% block content %}
+
+    <style>
+
+        div.container {
+            direction: rtl;
+        }
+        
+        a {
+            text-decoration: none;
+            color: #000000;
+        }
+
+        a:hover {
+            color: #ffffff;
+        }
+
+    </style>
+    
     <br>    
     <div class="container" style="width: 30rem;">
         <h2>خارج شده اید</h2>
         <div class="border-top pt-3">
             <small class="text-muted">
-                <a style="text-decoration: none;" href="{% url 'login' %}">ورود ؟</a>
+                <button class="btn btn-info"><a href="{% url 'login' %}">ورود ؟</a></button>
             </small>
         </div>
     </div>
