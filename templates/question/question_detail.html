@@ -11,18 +11,28 @@
         div.card{
             direction: rtl;
             background-color: #D9CAAD; 
-            width: 80rem; 
+            /* background-color: green; */
+            width: 50rem; 
             height: fit-content; 
             margin: auto;
         }
 
         div.content-section{
             width: fit-content; 
-            margin: 20px;
+            /* background-color:blue; */
+            width: 95%;
+            margin: 10px auto;
         }
 
+        div.like-button {
+            background-color:orange;
+            width: fit-content;
+            margin: 0 20px 5px 0;
+        }
+
+
         p {
-            margin: 5px 0;
+            margin: 0;
         }
 
         h6 {
@@ -31,7 +41,7 @@
 
         p.tags {
             color: #C03507; 
-            margin: 5px 10px; 
+            margin: 5px 5px; 
             display: inline;
         }
 
@@ -40,7 +50,7 @@
             /* background-color: yellow; */
         }
 
-        a{
+        a {
             text-decoration: none;
         }
 
@@ -53,11 +63,9 @@
             <h4> {{ question.title }} </h4>
             <!-- adding (|safe) to properly show the cdkeditor genarated text -->
             <p class="content" >{{ question.description|safe}}</p>
-            <div>
-                {% for tag in question.tags.all %}
-            </div>
-                    <h6><em>{{ tag }}</em></h6>
-                {% endfor %}
+            {% for tag in question.tags.all %}
+                <h6><em>{{ tag }}</em></h6>
+            {% endfor %}
             {% if question.author == user %}
                 <a style="text-decoration: none;width: fit-content; margin-left: 30px; padding: 3px" class="btn btn-outline-dark btn-sm" href="{% url 'update_question' question.pk %}">بروزرسانی</a>
                 <a style="text-decoration: none;width: fit-content; margin-left: 30px; padding: 3px" class="btn btn-outline-danger btn-sm" href="{% url 'delete_question' question.pk %}">حذف</a>
@@ -73,20 +81,22 @@
                     <p>دسته بندی: {{question.category}}</p>
                 </div>
             {% endif %}
+            <!-- using the method (likes_count) in the question model without passign data by get_context_data -->
+            <p>likes {{ question.likes_count }}</p>
         </div>
         <!--  like for question -->
-        <form method="POST" action="{% url 'question_like' question.pk %}">
-            {% csrf_token %}
-            {% if request.user.is_authenticated %}           
-                {% if liked %}
-                    <button class="btn btn-danger btn-sm" type="submit" name="question_id" value="{{ question.id }}">Unlike</button>
-                {% else %}
-                    <button class="btn btn-secondary btn-sm" type="submit" name="question_id" value="{{ question.id }}">like</button>
+        <div class="like-button">
+            <form method="POST" action="{% url 'question_like' question.pk %}">
+                {% csrf_token %}
+                {% if request.user.is_authenticated %}           
+                    {% if liked %}
+                        <button class="btn btn-danger btn-sm" type="submit" name="question_id" value="{{ question.id }}">Unlike</button>
+                    {% else %}
+                        <button class="btn btn-secondary btn-sm" type="submit" name="question_id" value="{{ question.id }}">like</button>
+                    {% endif %}
                 {% endif %}
-            {% endif %}
-        </form>
-        <!-- using the method | likes_count | in the question model without passign data by get_context_data -->
-        <p>likes {{ question.likes_count }}</p>
+            </form>
+        </div>
     </div>
 
 {% endblock %}

@@ -42,9 +42,10 @@
             <div class="card">
                 <ul>
                     <br>
-                    <li><h4><a href="{% url 'question_detail' question.pk %}" class="link">{{ question.title }}</a></h4></li>
+                    <!-- <li><h4><a href="{% url 'question_detail' question.pk %}" class="link">{{ question.title }}</a></h4></li> -->
+                    <li><h4><a href="{{ question.get_absolute_url }}" class="link">{{ question.title }}</a></h4></li>
                     <!-- adding (|safe) to properly show the cdkeditor genarated text -->
-                    <p>{{ question.description|truncatewords:10|safe}}</p>
+                    <p>{{ question.description|truncatewords:15|safe}}</p>
                     {% if question.tags.exists %}
                         <div class="tags">
                             <p id="tag-label">برچسب ها:</p>
