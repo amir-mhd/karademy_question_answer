@@ -23,7 +23,7 @@ class HomeListView(ListView):
     queryset = Question.objects.all()
     context_object_name = "questions"
     template_name = "question/question.html"
-
+    paginate_by = 3
 
 class QuestionDetailView(DetailView):
     model = Question

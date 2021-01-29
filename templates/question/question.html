@@ -6,6 +6,7 @@
 {% block content %}
 
     <style>
+
         div.card {
             background-color: #E9EAEE; 
             width: 55rem; 
@@ -34,32 +35,59 @@
             color: #000000;
         }
 
+        div.paginater-section {
+            /* background-color: red; */
+            width: fit-content;
+            margin: 10px auto;
+        }
+
+
     </style>
 
     <br>
-    <div class="container">
-        {% for question in questions%}
-            <div class="card">
-                <ul>
-                    <br>
-                    <!-- <li><h4><a href="{% url 'question_detail' question.pk %}" class="link">{{ question.title }}</a></h4></li> -->
-                    <li><h4><a href="{{ question.get_absolute_url }}" class="link">{{ question.title }}</a></h4></li>
-                    <!-- adding (|safe) to properly show the cdkeditor genarated text -->
-                    <p>{{ question.description|truncatewords:15|safe}}</p>
-                    {% if question.tags.exists %}
-                        <div class="tags">
-                            <p id="tag-label">برچسب ها:</p>
-                            {% for tag in question.tags.all %}
-                                <p class="tag">{{ tag }}</p>
-                            {% endfor %}
-                        </div>
-                    {% endif %}
-                    <!-- <a href="{% url 'question_detail' question.pk %}" class="btn btn-outline-dark btn-sm" role="button">Detail</a> -->
-                </ul>
-            </div>
-            <br>
-        {% endfor %}
-    </div>
+    {% for question in questions%}
+        <div class="card">
+            <ul>
+                <br>
+                <!-- <li><h4><a href="{% url 'question_detail' question.pk %}" class="link">{{ question.title }}</a></h4></li> -->
+                <li><h4><a href="{{ question.get_absolute_url }}" class="link">{{ question.title }}</a></h4></li>
+                <!-- adding (|safe) to properly show the cdkeditor genarated text -->
+                <p>{{ question.description|truncatewords:15|safe}}</p>
+                {% if question.tags.exists %}
+                    <div class="tags">
+                        <p id="tag-label">برچسب ها:</p>
+                        {% for tag in question.tags.all %}
+                            <p class="tag">{{ tag }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                <!-- <a href="{% url 'question_detail' question.pk %}" class="btn btn-outline-dark btn-sm" role="button">Detail</a> -->
+            </ul>
+        </div>
+        <br>
+    {% endfor %}    
+
+    {% if is_paginated %}
+        <div class="paginater-section">
+            {% if page_obj.has_previous %}
+            <a class="btn btn-outline-secondary mb-4" href="?page=1">First</a>
+            <a class="btn btn-outline-secondary mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+            {% endif %}
+    
+            {% for num in page_obj.paginator.page_range %}
+                {% if page_obj.number == num %}
+                    <a class="btn btn-secondary mb-4" href="?page={{ num }}">{{ num }}</a>
+                {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                    <a class="btn btn-outline-secondary mb-4" href="?page={{ num }}">{{ num }}</a>
+                {% endif %}
+            {% endfor %}
+    
+            {% if page_obj.has_next %}
+                <a class="btn btn-outline-secondary mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
+                <a class="btn btn-outline-secondary mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+            {% endif %}
+        </div>
+    {% endif %}
 
 {% endblock %}
     
