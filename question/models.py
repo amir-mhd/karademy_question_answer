@@ -1,3 +1,4 @@
+from django.utils.text import slugify
 from hitcount.models import HitCountMixin, HitCount
 #used in hitcount
 from django.contrib.contenttypes.fields import GenericRelation 
@@ -42,7 +43,7 @@ class Question(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="پرسنده")
     title = models.CharField(max_length=255, verbose_name="عنوان پرسش")
     description = RichTextField(verbose_name="متن پرسش")
-    tags = models.ManyToManyField(Tag)
+    tags = models.ManyToManyField(Tag, blank=True)
     slug = models.SlugField(null=True, allow_unicode=True, blank=True, unique=True)
     created_date = models.DateTimeField(auto_now_add=True, verbose_name="تاریخ ایجاد")
     edited_date = models.DateTimeField(auto_now=True, verbose_name="تاریخ ویرایش")
@@ -64,6 +65,11 @@ class Question(models.Model):
 
     def likes_count(self):
         return self.likes.count()
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
 
 
 class Answer(models.Model):
