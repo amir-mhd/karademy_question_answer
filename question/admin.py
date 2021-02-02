@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Question, Answer, Tag, Category
+from .models import Question, Answer, Category
 
 @admin.register(Question)
 class QuestionAdmin(admin.ModelAdmin):
@@ -25,9 +25,9 @@ class CategoryAdmin(admin.ModelAdmin):
     search_fields = ("name", "parent")
 
 
-@admin.register(Tag)
-class TagAdmin(admin.ModelAdmin):
-    list_display = ("name", "created_date", "edited_date")
-    ordering = ("created_date",)
+# @admin.register(Tag)
+# class TagAdmin(admin.ModelAdmin):
+#     list_display = ("name", "created_date", "edited_date")
+#     ordering = ("created_date",)
 
 

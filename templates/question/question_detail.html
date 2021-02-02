@@ -39,11 +39,11 @@
             color: red;
         }
 
-        p.tags {
+        /* p.tags {
             color: #C03507; 
             margin: 5px 5px; 
             display: inline;
-        }
+        } */
 
         div.category {
             margin: 0px;
@@ -63,9 +63,9 @@
             <h4> {{ question.title }} </h4>
             <!-- adding (|safe) to properly show the cdkeditor genarated text -->
             <p class="content" >{{ question.description|safe}}</p>
-            {% for tag in question.tags.all %}
+            <!-- {% for tag in question.tags.all %}
                 <h6><em>{{ tag }}</em></h6>
-            {% endfor %}
+            {% endfor %} -->
             {% if question.author == user %}
                 <a style="text-decoration: none;width: fit-content; margin-left: 30px; padding: 3px" class="btn btn-outline-dark btn-sm" href="{% url 'update_question' question.pk %}">بروزرسانی</a>
                 <a style="text-decoration: none;width: fit-content; margin-left: 30px; padding: 3px" class="btn btn-outline-danger btn-sm" href="{% url 'delete_question' question.pk %}">حذف</a>
