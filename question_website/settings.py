@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     "ckeditor",
     "question.apps.QuestionConfig",
     "users.apps.UsersConfig",
+    "taggit",
 ]
 
 MIDDLEWARE = [

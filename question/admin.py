@@ -25,9 +25,3 @@ class CategoryAdmin(admin.ModelAdmin):
     search_fields = ("name", "parent")
 
 
-# @admin.register(Tag)
-# class TagAdmin(admin.ModelAdmin):
-#     list_display = ("name", "created_date", "edited_date")
-#     ordering = ("created_date",)
-
-

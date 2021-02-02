@@ -1,26 +1,11 @@
 from django.utils.text import slugify
-from hitcount.models import HitCountMixin, HitCount
-#used in hitcount
+from hitcount.models import HitCountMixin, HitCount 
 from django.contrib.contenttypes.fields import GenericRelation 
 from django.db import models
 from django.contrib.auth.models import User
-#used for ckeditor
 from ckeditor.fields import RichTextField 
+from taggit.managers import TaggableManager
 from django.urls import reverse_lazy
-
-
-# class Tag(models.Model):
-#     name = models.CharField(max_length=50, verbose_name="اسم برچسب", unique=True)
-#     created_date = models.DateTimeField(auto_now_add=True, verbose_name="تاریخ ایجاد")
-#     edited_date = models.DateTimeField(auto_now=True, verbose_name="تاریخ ویرایش")
-
-#     class Meta:
-#         verbose_name = "برچسب"
-#         verbose_name_plural = "برچسب ها"
-#         db_table = "Tag"
-
-#     def __str__(self):
-#         return self.name
 
 
 class Category(models.Model):
@@ -43,7 +28,7 @@ class Question(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="پرسنده")
     title = models.CharField(max_length=255, verbose_name="عنوان پرسش")
     description = RichTextField(verbose_name="متن پرسش")
-    # tags = models.ManyToManyField(Tag, blank=True)
+    tags = TaggableManager()
     slug = models.SlugField(null=True, allow_unicode=True, blank=True, unique=True)
     created_date = models.DateTimeField(auto_now_add=True, verbose_name="تاریخ ایجاد")
     edited_date = models.DateTimeField(auto_now=True, verbose_name="تاریخ ویرایش")
