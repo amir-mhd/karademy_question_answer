@@ -45,12 +45,14 @@
                     <li><h4><a href="{% url 'question_detail' question.pk %}" class="link">{{ question.title }}</a></h4></li>
                     <!-- adding (|safe) to properly show the cdkeditor genarated text -->
                     <p>{{ question.description|truncatewords:10|safe}}</p>
-                    <div class="tags">
-                        <p id="tag-label">برچسب ها:</p>
-                        {% for tag in question.tags.all %}
-                            <p class="tag">{{ tag }}</p>
-                        {% endfor %}
-                    </div>
+                    {% if question.tags.exists%}                    
+                        <div class="tags">
+                            <p id="tag-label">برچسب ها:</p>
+                            {% for tag in question.tags.all %}
+                                <p class="tag">{{ tag }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
                     <!-- <a href="{% url 'question_detail' question.pk %}" class="btn btn-outline-dark btn-sm" role="button">Detail</a> -->
                 </ul>
             </div>
