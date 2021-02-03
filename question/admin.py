@@ -15,7 +15,8 @@ class QuestionAdmin(admin.ModelAdmin):
 @admin.register(Answer)
 class AnswerAdmin(admin.ModelAdmin):
     list_display = ("author", "question", "created_date", "edited_date")
-
+    raw_id_fields = (("author",))
+    search_fields = ("title", "description")
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
