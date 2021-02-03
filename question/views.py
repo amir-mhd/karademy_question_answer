@@ -57,7 +57,7 @@ class QuestionCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
 
 class QuestionUpdateView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, UpdateView):
     model = Question
-    fields = ['title', 'description'] #, 'tags'
+    fields = ['title', 'description', "tags"] #, 'tags'
     # create and update view can use the same template
     template_name = "question/ask_question.html"
     success_message = "updated successfully"
