@@ -11,7 +11,7 @@ from django.urls import reverse_lazy
 class Category(models.Model):
     name = models.CharField(max_length=100, verbose_name="دسته بندی")
     parent = models.ForeignKey("self", verbose_name=("دسته بندی سطح بالا"), on_delete=models.CASCADE, blank=True, null=True)
-    slug = models.SlugField(blank=True, null=True, unique=True)
+    slug = models.SlugField(max_length=250, blank=True, null=True, unique=True)
     created_date = models.DateTimeField(auto_now_add=True, verbose_name="تاریخ ایجاد")
     edited_date = models.DateTimeField(auto_now=True, verbose_name="تاریخ ویرایش")
 
