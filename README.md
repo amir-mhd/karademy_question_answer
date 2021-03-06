@@ -1,4 +1,4 @@
-# karademy_question_answer
+# Project's aim
 A website which it's only purpose is to help programmers in thier journey. This is a website for developers to ask developers, in it's core functionality it's just a Q&A website. Oriented toward simplicity, ease of use and getting job done by fewest clicks as possible (high efficiency).
 
 # Motivation
